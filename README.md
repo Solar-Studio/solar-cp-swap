@@ -23,4 +23,4 @@ git clone https://github.com/Solar-Studio/solar-cp-swap
 cd solar-cp-swap && anchor test
 ```
 
-The solar-cp-swap is live on Eclipse Devnet, deployed at program ID `sooGfQwJ6enHfLTPfasFZtFR7DgobkJD77maDNEqGkD`.
+The solar-cp-swap is live on Eclipse Mainnet and Devnet, deployed at program ID `sooGfQwJ6enHfLTPfasFZtFR7DgobkJD77maDNEqGkD`.
