@@ -1,0 +1,40 @@
+[toolchain]
+anchor_version = "0.29.0"
+solana_version = "1.17.0"
+
+[features]
+seeds = false
+skip-lint = false
+
+# [programs.localnet]
+# raydium_cp_swap = "soTGt6rjUYJjZ1Fxa65wPjehiYvNDDYkY4wvDjyyoW6"
+
+# [registry]
+# url = "https://github.com/raydium-io/raydium-cp-swap"
+
+[provider]
+cluster = "https://staging-rpc.dev2.eclipsenetwork.xyz"
+wallet = "/Users/visheshsachdev/.config/solana/id.json"
+
+[workspace]
+members = ["programs/cp-swap"]
+
+# [scripts]
+# test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+
+# [test]
+# startup_wait = 10000
+# shutdown_wait = 2000
+# upgradeable = false
+
+# [test.validator]
+# bind_address = "0.0.0.0"
+# url = "https://api.mainnet-beta.solana.com"
+# ledger = ".anchor/test-ledger"
+# rpc_port = 8899
+
+# [[test.validator.clone]]
+# address = "DNXgeM9EiiaAbaWvwjHj9fQQLAX5ZsfHyvmYUNRAdNC8"
+
+# [[test.validator.clone]]
+# address = "D4FPEruKEHrG5TenZ2mpDGEfu1iUvTiqBxvpU8HLBvC2"
