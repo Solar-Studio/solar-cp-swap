@@ -4,7 +4,6 @@ use anyhow::{format_err, Result};
 use arrayref::array_ref;
 use clap::Parser;
 use configparser::ini::Ini;
-use solar_cp_swap::states::AMM_CONFIG_SEED;
 use solana_client::{rpc_client::RpcClient, rpc_config::RpcTransactionConfig};
 use solana_sdk::{
     commitment_config::CommitmentConfig,
@@ -13,11 +12,12 @@ use solana_sdk::{
     transaction::Transaction,
 };
 use solana_transaction_status::UiTransactionEncoding;
+use solar_cp_swap::states::AMM_CONFIG_SEED;
 use std::rc::Rc;
 use std::str::FromStr;
 
 mod instructions;
-use instructions::amm_instructions::*;
+use instructions::amm_instructions::{update_amm_config, *};
 use instructions::events_instructions_parse::*;
 use instructions::rpc::*;
 use instructions::token_instructions::*;
@@ -109,6 +109,12 @@ pub enum RaydiumCpCommands {
         #[arg(short, long, default_value_t = 0)]
         open_time: u64,
     },
+    UpdateAmmConfig {
+        #[arg(long)]
+        param: u8,
+        #[arg(long)]
+        value: u64,
+    },
     Deposit {
         pool_id: Pubkey,
         user_token_0: Pubkey,
@@ -183,6 +189,19 @@ fn main() -> Result<()> {
             let recent_hash = rpc_client.get_latest_blockhash()?;
             let txn = Transaction::new_signed_with_payer(
                 &create_amm_config_ix,
+                Some(&payer.pubkey()),
+                &signers,
+                recent_hash,
+            );
+            let signature = send_txn(&rpc_client, &txn, true)?;
+            println!("{}", signature);
+        }
+        RaydiumCpCommands::UpdateAmmConfig { param, value } => {
+            let update_amm_ix = update_amm_config(&pool_config, payer.pubkey(), param, value)?;
+            let signers = vec![&payer];
+            let recent_hash = rpc_client.get_latest_blockhash()?;
+            let txn = Transaction::new_signed_with_payer(
+                &update_amm_ix,
                 Some(&payer.pubkey()),
                 &signers,
                 recent_hash,

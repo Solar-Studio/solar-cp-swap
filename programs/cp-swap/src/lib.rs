@@ -8,10 +8,10 @@ use crate::curve::fees::FEE_RATE_DENOMINATOR_VALUE;
 use anchor_lang::prelude::*;
 use instructions::*;
 
-#[cfg(not(feature = "no-entrypoint"))]
-solana_security_txt::security_txt! {
-    name: "solar-dex-cp-swap"
-}
+// #[cfg(not(feature = "no-entrypoint"))]
+// solana_security_txt::security_txt! {
+//     name: "solar-dex-cp-swap"
+// }
 
 #[cfg(feature = "devnet")]
 declare_id!("sooGfQwJ6enHfLTPfasFZtFR7DgobkJD77maDNEqGkD");
@@ -29,9 +29,9 @@ pub mod admin {
 pub mod create_pool_fee_reveiver {
     use anchor_lang::prelude::declare_id;
     #[cfg(feature = "devnet")]
-    declare_id!("83gLucJu4ryXKCpxKfig8PZwKdzGW1DgZmPX82p7VLD4");
+    declare_id!("8zMpsHcZEiZAuMFmd46ACKtg3om37UeWx2YKfUiRG6Gd");
     #[cfg(not(feature = "devnet"))]
-    declare_id!("83gLucJu4ryXKCpxKfig8PZwKdzGW1DgZmPX82p7VLD4");
+    declare_id!("8zMpsHcZEiZAuMFmd46ACKtg3om37UeWx2YKfUiRG6Gd");
 }
 
 pub const AUTH_SEED: &str = "vault_and_lp_mint_auth_seed";

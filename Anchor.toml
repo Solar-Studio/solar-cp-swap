@@ -13,7 +13,7 @@ skip-lint = false
 # url = "https://github.com/raydium-io/raydium-cp-swap"
 
 [provider]
-cluster = "https://mainnetbeta-rpc.eclipse.xyz"
+cluster = "https://eclipse.helius-rpc.com"
 wallet = "/Users/visheshsachdev/.config/solana/id.json"
 
 [workspace]
